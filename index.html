@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>RightsLK — Know Your Rights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#16233a; --navy2:#1f2f4d; --gold:#f5b942; --gold2:#ffd97a;
+  --bg:#f4f6fb; --card:#ffffff; --ink:#1c2433; --mut:#667085;
+  --green:#1d9d5f; --amber:#c77f0a; --blue:#2563eb;
+  --r:18px; --shadow:0 6px 24px rgba(22,35,58,.10);
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+body{margin:0; font-family:'Poppins','Noto Sans Sinhala','Noto Sans Tamil',system-ui,sans-serif; background:var(--bg); color:var(--ink); padding-bottom:96px}
+header{position:sticky; top:0; z-index:20; background:linear-gradient(135deg,var(--navy),var(--navy2)); color:#fff; padding:20px 18px 16px; border-radius:0 0 26px 26px; box-shadow:var(--shadow)}
+.brand{display:flex; align-items:center; gap:12px}
+.brand .mark{width:46px; height:46px; border-radius:14px; background:var(--gold); display:grid; place-items:center; font-size:26px; flex:none}
+.brand h1{margin:0; font-size:22px; font-weight:800; letter-spacing:.3px}
+.brand p{margin:2px 0 0; font-size:12px; color:#c7d2e8}
+.langswitch{display:flex; gap:8px; margin-top:12px}
+.langswitch button{flex:1; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.08); color:#fff; font-family:inherit; font-size:13px; font-weight:600; padding:9px 0; border-radius:99px; cursor:pointer}
+.langswitch button.on{background:var(--gold); color:var(--navy); border-color:var(--gold)}
+.disclaimer-chip{margin-top:12px; background:rgba(245,185,66,.14); border:1px solid rgba(245,185,66,.45); color:var(--gold2); font-size:11.5px; padding:8px 12px; border-radius:12px; line-height:1.5}
+.searchbar{margin:14px 18px 4px; position:relative}
+.searchbar input{width:100%; border:none; outline:none; background:#fff; border-radius:14px; padding:13px 14px 13px 44px; font-family:inherit; font-size:14px; box-shadow:var(--shadow)}
+.searchbar span{position:absolute; left:15px; top:50%; transform:translateY(-50%); font-size:18px}
+.wrap{padding:14px 18px}
+.grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.scard{background:var(--card); border-radius:var(--r); padding:16px 14px; box-shadow:var(--shadow); cursor:pointer; border:1px solid #e8ecf4; transition:transform .12s}
+.scard:active{transform:scale(.97)}
+.scard .ic{font-size:30px}
+.scard h3{margin:8px 0 4px; font-size:14.5px; font-weight:700; line-height:1.35}
+.scard .tag{font-size:11px; color:var(--mut)}
+.sec-label{font-size:12px; font-weight:700; letter-spacing:1.2px; color:var(--mut); margin:18px 2px 10px; text-transform:uppercase}
+.sheet{position:fixed; inset:0; z-index:50; display:none}
+.sheet.open{display:block}
+.sheet .scrim{position:absolute; inset:0; background:rgba(10,16,30,.55)}
+.sheet .panel{position:absolute; left:0; right:0; bottom:0; max-height:92vh; overflow-y:auto; background:#fff; border-radius:26px 26px 0 0; padding:10px 20px 34px; animation:up .25s ease}
+@keyframes up{from{transform:translateY(40px); opacity:.6} to{transform:none; opacity:1}}
+.grab{width:44px; height:5px; border-radius:99px; background:#dbe1ec; margin:6px auto 12px}
+.panel h2{margin:4px 40px 2px 0; font-size:20px}
+.panel .psub{font-size:12.5px; color:var(--mut); margin-bottom:6px}
+.closebtn{position:sticky; top:0; float:right; border:none; background:#eef1f7; width:36px; height:36px; border-radius:50%; font-size:18px; cursor:pointer; z-index:2}
+.block{border-radius:14px; padding:13px 14px; margin:12px 0; font-size:13.5px; line-height:1.65}
+.block h4{margin:0 0 8px; font-size:13px; letter-spacing:.6px; text-transform:uppercase}
+.block ul{margin:0; padding-left:18px}
+.block li{margin:5px 0}
+.b-can{background:#e9f7ef; border:1px solid #bfe6cf}.b-can h4{color:var(--green)}
+.b-cant{background:#fdf3e2; border:1px solid #f0d9a8}.b-cant h4{color:var(--amber)}
+.b-do{background:#e8effd; border:1px solid #c3d4f7}.b-do h4{color:var(--blue)}
+.say{background:var(--navy); color:#fff; border-radius:14px; padding:14px; margin:12px 0}
+.say h4{margin:0 0 8px; font-size:12px; letter-spacing:1px; color:var(--gold2); text-transform:uppercase}
+.say p{margin:8px 0; font-size:13.5px; line-height:1.6}
+.say p::before{content:"\201C"; color:var(--gold)}
+.say p::after{content:"\201D"; color:var(--gold)}
+.note{font-size:12px; color:var(--mut); background:#f2f4f9; border-radius:12px; padding:10px 12px; line-height:1.6}
+.foot-disc{margin:18px 2px 0; font-size:11.5px; color:var(--mut); line-height:1.7; border-top:1px dashed #d5dbe7; padding-top:12px}
+.ecard{background:#fff; border-radius:var(--r); box-shadow:var(--shadow); padding:16px; margin:10px 0; display:flex; align-items:center; gap:14px; border:1px solid #e8ecf4}
+.ecard .eic{width:52px; height:52px; border-radius:16px; display:grid; place-items:center; font-size:26px; flex:none}
+.ecard .einf{flex:1}
+.ecard .einf b{font-size:15px}
+.ecard .einf p{margin:3px 0 0; font-size:12px; color:var(--mut); line-height:1.5}
+.callbtn{display:inline-block; margin-top:8px; background:var(--green); color:#fff; text-decoration:none; font-weight:700; font-size:13px; padding:9px 18px; border-radius:99px}
+nav{position:fixed; left:0; right:0; bottom:0; z-index:30; background:#fff; border-top:1px solid #e6eaf2; display:flex; padding:8px 6px calc(10px + env(safe-area-inset-bottom)); box-shadow:0 -4px 20px rgba(0,0,0,.06)}
+nav button{flex:1; border:none; background:none; font-family:inherit; font-size:11px; color:var(--mut); cursor:pointer; padding:6px; border-radius:12px}
+nav button .ni{font-size:22px; display:block}
+nav button.on{color:var(--navy); font-weight:700}
+.hidden{display:none!important}
+.empty{text-align:center; color:var(--mut); padding:40px 20px; font-size:14px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="mark">⚖️</div>
+    <div><h1>RightsLK</h1><p id="subtitle"></p></div>
+  </div>
+  <div class="langswitch">
+    <button id="lang-en" onclick="setLang('en')">English</button>
+    <button id="lang-si" onclick="setLang('si')">සිංහල</button>
+    <button id="lang-ta" onclick="setLang('ta')">தமிழ்</button>
+  </div>
+  <div class="disclaimer-chip" id="discChip"></div>
+</header>
+
+<div id="view-situations">
+  <div class="searchbar"><span>🔍</span><input id="q" oninput="renderGrid()"></div>
+  <div class="wrap">
+    <div class="sec-label" id="secSit"></div>
+    <div class="grid" id="grid"></div>
+    <div class="empty hidden" id="nores"></div>
+    <div class="foot-disc" id="aboutText"></div>
+  </div>
+</div>
+
+<div id="view-emergency" class="hidden">
+  <div class="wrap">
+    <div class="sec-label" id="secEm"></div>
+    <div id="elist"></div>
+    <div class="foot-disc" id="emFoot"></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet">
+  <div class="scrim" onclick="closeSheet()"></div>
+  <div class="panel">
+    <div class="grab"></div>
+    <button class="closebtn" onclick="closeSheet()">✕</button>
+    <div id="sheetBody"></div>
+  </div>
+</div>
+
+<nav>
+  <button id="tabS" class="on" onclick="showTab('situations')"><span class="ni">📋</span><span id="tabSit"></span></button>
+  <button id="tabE" onclick="showTab('emergency')"><span class="ni">🚨</span><span id="tabEm"></span></button>
+</nav>
+
+<script>
+/* ============ TRILINGUAL CONTENT ============
+   English is the reference text. Sinhala and Tamil are
+   plain-language translations — checked for meaning,
+   to be reviewed by a native-speaking lawyer. */
+const LANGS = {
+en: { ui: {
+  subtitle: "Know your rights, in plain language",
+  disc: "ℹ️ General information only — not legal advice. Laws change; for your situation, talk to a lawyer. Free help: Legal Aid Commission 011-2433618.",
+  searchPh: "Search situations… e.g. arrest, phone, bail",
+  secSit: "Common situations", secEm: "Emergency contacts",
+  tabSit: "Situations", tabEm: "Emergency", nores: "No situations match your search.",
+  theyCan: "✅ They can", limits: "⛔ Limits on their power", youDo: "🧭 What you should do", sayThis: "🗣️ Say this",
+  callNow: "📞 Call now",
+  about: "<b>About this app:</b> RightsLK summarises everyday legal rights in Sri Lanka in plain language, based on the Constitution (Articles 11 & 13), the Code of Criminal Procedure, the Motor Traffic Act, the Evidence Ordinance, and published hotlines. Sinhala and Tamil are plain-language translations — the English text is the reference. It is not a substitute for a lawyer. If you are in trouble right now, use the Emergency tab.",
+  emFoot: "Numbers from official sources (Police, HRCSL, Legal Aid Commission). If a number fails, try the others — and tell someone near you what is happening.",
+  sheetFoot: "General information, not legal advice. If this is happening to you now, switch to the Emergency tab."
+},
+situations: [
+{ id:"traffic", icon:"🚦", title:"Stopped by traffic police", tag:"Road / driving",
+  can:["Ask for your driving licence — the law says you must always carry it and produce it on demand (Motor Traffic Act)","Check your revenue licence, insurance and other vehicle documents","Take charge of your licence temporarily during an investigation — but must issue you a written temporary permit","Issue a spot fine for minor offences, payable at any post office within 14 days"],
+  cant:["Demand cash on the roadside as an informal settlement — fines go through official receipts or court","Keep your licence without giving you the temporary permit","Offer spot fines for reckless or dangerous driving — under a 2026 police directive these go straight to court"],
+  do:["Stay calm, and stay in your vehicle unless asked to step out","Politely ask for the officer's name and service number","Never offer a bribe — offering one is itself an offence","You can refuse a spot fine and elect to have the case heard in court","Keep the official receipt for any payment; collect your licence with the payment receipt and temporary permit"],
+  say:["May I see your identification, officer?","I would like this heard in court."],
+  note:"Spot-fine rules and amounts change often. When in doubt, choose the court option over paying on the roadside." },
+{ id:"arrest", icon:"🚨", title:"Arrested by police", tag:"Most important",
+  can:["Arrest you without a warrant for serious (cognizable) offences","Use reasonable force if you resist arrest"],
+  cant:["Arrest you arbitrarily — arrest must follow the procedure established by law (Constitution, Art. 13(1))","Hold you beyond 24 hours without producing you before a Magistrate (Code of Criminal Procedure, s.37)","Torture or mistreat you — absolutely prohibited (Constitution, Art. 11)","Force a confession — threats make any statement inadmissible"],
+  do:["Do NOT resist physically, even if you believe the arrest is wrong — resisting makes everything worse","Ask clearly what the reason for your arrest is — they must tell you","Give your name and basic details; then remain silent until you have a lawyer","Ask to contact your family and a lawyer immediately","Memorise officer names, numbers, time and place","If injured, ask to see a doctor — and say so on the record"],
+  say:["Please tell me the reason for my arrest.","I wish to speak to a lawyer, and I will remain silent until then.","I want my family informed of where I am."],
+  note:"You must be brought before the nearest Magistrate within 24 hours. Any further detention needs the Magistrate's order." },
+{ id:"search", icon:"🔍", title:"Police want to search you, your vehicle or home", tag:"Searches",
+  can:["Search you after a lawful arrest","Search your vehicle where the law specifically allows it"],
+  cant:["Search your home without a search warrant from a Magistrate in most cases","Have a male officer body-search a woman — a woman must be searched by another woman","Seize your belongings without any record"],
+  do:["Ask politely whether they have a warrant and may you see it — note the warrant number and issuing court","Do not physically obstruct officers, even while objecting verbally","Note names, numbers, time, and exactly what was taken","Ask for a written list / receipt of anything seized"],
+  say:["Do you have a warrant? May I see it, please?","I am not obstructing, but I do not consent to this search.","Please give me a written list of everything you take."],
+  note:"Saying you do not consent does not physically stop a search, but it protects your position later." },
+{ id:"phone", icon:"📱", title:"Asked to unlock your phone", tag:"Digital rights",
+  can:["Ask you to hand over or unlock your phone"],
+  cant:["There is no settled, clear-cut law in Sri Lanka forcing you to reveal your password on the spot — this area is legally grey"],
+  do:["You are not obliged to volunteer your password — politely decline without a court order","Ask whether they have a court order for this","Do NOT delete anything — destroying potential evidence is itself an offence","Ask for any demand in writing"],
+  say:["I do not consent to a search of my phone. Do you have a court order?","I would like to speak to a lawyer before answering that."],
+  note:"This is genuinely unsettled law. Declining politely and asking for a lawyer is the safest line until the law is clearer." },
+{ id:"statement", icon:"🏢", title:"Called to the station for a statement", tag:"Questioning",
+  can:["Invite you to give a statement, as a witness or a suspect","Record what you say"],
+  cant:["Force you to come if you are not under arrest — ask whether you are free to leave","Use a confession you made to a police officer against you in court (Evidence Ordinance, s.25)","Force you to sign anything you have not read and understood"],
+  do:["Ask first whether you are a suspect or a witness, and whether you are free to leave","Bring a lawyer if you might be a suspect — get advice before you speak","A confession made while in police custody counts only if made in the immediate presence of a Magistrate (s.26) — another reason to wait for your lawyer","Read everything before signing; photograph anything you sign","Note the officer's name and the times you arrived and left"],
+  say:["Am I a suspect or a witness here?","Am I free to leave?","I would like my lawyer present before I give a statement."],
+  note:"Just come for a small chat can still become evidence. A lawyer present changes the dynamic completely." },
+{ id:"protest", icon:"✊", title:"At a protest or public gathering", tag:"Assembly",
+  can:["Be present and monitor the gathering","Impose conditions or order dispersal under specific laws (e.g. unlawful assembly provisions, court orders)"],
+  cant:["Ban peaceful assembly outright — you have a constitutional right to peaceful assembly (Art. 14(1)(b))","Use excessive force against peaceful participants","Arrest you without following normal arrest procedure — all arrest rights still apply"],
+  do:["Carry your ID with you","Stay peaceful — the right protects peaceful assembly","Note badge numbers if anything happens","Film from a safe distance if you can","Have an emergency contact who knows where you are"],
+  say:["I am assembling peacefully.","Please identify yourself, officer."],
+  note:"If arrested at a protest, open the Arrested by police card — every right there applies." },
+{ id:"complaint", icon:"📝", title:"Filing a complaint against police", tag:"Accountability",
+  can:["Complain to the Human Rights Commission of Sri Lanka (HRCSL) — 24-hour hotline 1996","Complain to the National Police Commission about officer misconduct","Seek free legal help from the Legal Aid Commission (011-2433618)"],
+  cant:["Nobody can legally stop you from complaining — retaliation for a genuine complaint is itself wrong"],
+  do:["Write down EVERYTHING as soon as possible: names, numbers, time, place, witnesses","If injured, get a medical report immediately — it is key evidence","Keep copies of everything you submit","Complaints can be made in Sinhala, Tamil or English"],
+  say:["I wish to lodge a formal complaint about the conduct of officers at [place] on [date]."],
+  note:"HRCSL hotline 1996 is the fastest route for rights violations. For a lawyer you cannot afford, call the Legal Aid Commission." },
+{ id:"bail", icon:"⚖️", title:"Bail basics", tag:"After arrest",
+  can:["A Magistrate can grant bail for many offences","For grave offences, bail is considered by the High Court"],
+  cant:["Be held indefinitely without your bail application being considered by a court"],
+  do:["Ask your lawyer to move a bail application at the first Magistrate hearing (within 24 hours of arrest)","Have a surety (guarantor) ready — courts often ask for one","Obey every bail condition strictly — breaching them can revoke bail"],
+  say:["I would like to apply for bail through my lawyer."],
+  note:"Bail rules depend heavily on the offence. This card is only the outline — your lawyer's advice governs." }
+],
+contacts: [
+ {icon:"🚔", bg:"#e9f7ef", name:"Police Emergency", num:"119", desc:"National police emergency line. Use when you or someone near you is in immediate danger.", tel:"119"},
+ {icon:"🛡️", bg:"#fdf3e2", name:"HRCSL Hotline (24 hours)", num:"1996", desc:"Human Rights Commission of Sri Lanka. For arrests, torture, harassment or any rights violation by officials.", tel:"1996"},
+ {icon:"⚖️", bg:"#e8effd", name:"Legal Aid Commission", num:"011-2433618", desc:"Free legal advice and lawyers for those who cannot afford one. Head office, Colombo.", tel:"+94112433618"},
+ {icon:"👩", bg:"#fdeef4", name:"Women & Children Bureau", num:"011-3071121", desc:"Police bureau for abuse of women and children.", tel:"+94113071121"}
+] },
+
+/* ================= SINHALA ================= */
+si: { ui: {
+  subtitle: "ඔබේ අයිතිවාසිකම් සරල බසින් දැනගන්න",
+  disc: "ℹ️ මෙය සාමාන්‍ය තොරතුරු පමණි — නීති උපදෙස් නොවේ. නීති වෙනස් විය හැකි බැවින්, ඔබේ ගැටලුව සඳහා නීතිඥවරයෙකු හමුවන්න. නොමිලේ උපකාර: නීති ආධාර කොමිසම 011-2433618.",
+  searchPh: "තත්ත්වයන් සොයන්න… උදා: අත්අඩංගුව, දුරකථනය, ඇප",
+  secSit: "පොදු තත්ත්වයන්", secEm: "හදිසි ඇමතුම්",
+  tabSit: "තත්ත්වයන්", tabEm: "හදිසි", nores: "ඔබේ සෙවුමට ගැලපෙන තත්ත්වයක් නැත.",
+  theyCan: "✅ ඔවුන්ට කළ හැක්කේ", limits: "⛔ ඔවුන්ගේ බලයට සීමා", youDo: "🧭 ඔබ කළ යුත්තේ", sayThis: "🗣️ මෙසේ කියන්න",
+  callNow: "📞 දැන් අමතන්න",
+  about: "<b>මෙම ඇප් එක ගැන:</b> RightsLK මගින් ආණ්ඩුක්‍රම ව්‍යවස්ථාව (11 සහ 13 ව්‍යවස්ථා), දණ්ඩ නීති සංග්‍රහය, මෝටර් රථවාහන පනත, සාක්ෂි ආඥා පනත සහ ප්‍රකාශිත හදිසි අංක පදනම් කරගෙන ශ්‍රී ලංකාවේ එදිනෙදා නීතිමය අයිතිවාසිකම් සරල බසින් සාරාංශ කරයි. සිංහල සහ දෙමළ සරල පරිවර්තන වේ — ඉංග්‍රීසි පාඨය මූලාශ්‍රය ලෙස සලකන්න. මෙය නීතිඥවරයෙකුගේ ආදේශකයක් නොවේ. ඔබට දැන් කරදරයක් නම්, හදිසි ටැබය භාවිතා කරන්න.",
+  emFoot: "අංක නිල මූලාශ්‍රවලින් (පොලිසිය, HRCSL, නීති ආධාර කොමිසම). අංකයක් වැඩ නොකළොත් අනිත් ඒවා උත්සාහ කරන්න — සහ අසල කෙනෙකුට සිදුවන්නේ කුමක්දැයි කියන්න.",
+  sheetFoot: "සාමාන්‍ය තොරතුරු පමණි, නීති උපදෙස් නොවේ. මෙය ඔබට දැන් සිදුවන්නේ නම්, හදිසි ටැබයට මාරු වන්න."
+},
+situations: [
+{ id:"traffic", icon:"🚦", title:"රථවාහන පොලිසිය නවත්වයි", tag:"මාර්ගය / රිය පැදවීම",
+  can:["ඔබේ රියදුරු බලපත්‍රය ඉල්ලිය හැක — නීතියට අනුව එය සැමවිටම ළඟ තබාගෙන පොලිස් නිලධාරියෙකු ඉල්ලූ විට පෙන්විය යුතුය (මෝටර් රථවාහන පනත)","ආදායම් බලපත්‍රය, රක්ෂණය සහ වාහනයේ වෙනත් ලියකියවිලි පරීක්ෂා කළ හැක","පරීක්ෂණයක් අතරතුර ඔබේ බලපත්‍රය තාවකාලිකව භාරගත හැක — නමුත් ලිඛිත තාවකාලික බලපත්‍රයක් ඔබට දිය යුතුය","සුළු වැරදි සඳහා ස්ථානීය දඩයක් නියම කළ හැක — දින 14ක් ඇතුළත ඕනෑම තැපැල් කාර්යාලයකට ගෙවිය හැක"],
+  cant:["මාර්ගයේදීම මුදල් ඉල්ලා සමථයකට පත් විය නොහැක — දඩ මුදල් නිල රිසිට්පත් මගින් හෝ උසාවියෙන් ගෙවිය යුතුය","තාවකාලික බලපත්‍රයක් නොදී ඔබේ බලපත්‍රය තබාගත නොහැක","අනතුරුදායක රිය පැදවීම සඳහා ස්ථානීය දඩ ලබාදිය නොහැක — 2026 පොලිස් උපදෙස් අනුව ඒවා කෙලින්ම උසාවියට යයි"],
+  do:["සන්සුන්ව සිටින්න; බසින්නැයි කීවොත් මිස වාහනයේම සිටින්න","නිලධාරියාගේ නම සහ සේවා අංකය විනීතව අසන්න","කිසිවිටෙක අල්ලසක් දීමට උත්සාහ නොකරන්න — එයද වරදකි","ස්ථානීය දඩය ප්‍රතික්ෂේප කර නඩුව උසාවියේ විභාග කරන ලෙස ඉල්ලා සිටිය හැක","ගෙවන මුදලේ නිල රිසිට්පත තබාගන්න; ගෙවීම් රිසිට්පත සහ තාවකාලික බලපත්‍රය පෙන්වා බලපත්‍රය ආපසු ගන්න"],
+  say:["නිලධාරීතුමනි, ඔබේ හැඳුනුම්පත පෙන්විය හැකිද?","මට මෙය උසාවියේ විභාග කර ගැනීමට අවශ්‍යයි."],
+  note:"ස්ථානීය දඩ නීති සහ දඩ මුදල් නිතර වෙනස් වේ. සැකයක් ඇත්නම්, මාර්ගයේ ගෙවීමට වඩා උසාවි විකල්පය තෝරන්න." },
+{ id:"arrest", icon:"🚨", title:"පොලිසිය අත්අඩංගුවට ගනී", tag:"වැදගත්ම",
+  can:["බරපතල වැරදි සඳහා වරෙන්තු රහිතව අත්අඩංගුවට ගත හැක","ඔබ විරෝධය පෑවොත් සාධාරණ බලය භාවිතා කළ හැක"],
+  cant:["නීතියෙන් නියම කළ ක්‍රියාපටිපාටියෙන් තොරව අත්තනෝමතිකව අත්අඩංගුවට ගත නොහැක (ව්‍යවස්ථාව, 13(1) ව්‍යවස්ථාව)","මහේස්ත්‍රාත්වරයෙකු හමුවට පැමිණවීමෙන් තොරව පැය 24කට වඩා රඳවා තබාගත නොහැක (දණ්ඩ නීති සංග්‍රහය, 37 වගන්තිය)","වධහිංසා පැමිණවිය නොහැක — එය සම්පූර්ණයෙන්ම තහනම් (ව්‍යවස්ථාව, 11 ව්‍යවස්ථාව)","බලහත්කාරයෙන් පාපොච්චාරණයක් ලබාගත නොහැක — තර්ජනයෙන් ලබාගත් ප්‍රකාශ උසාවියේ වලංගු නැත"],
+  do:["අත්අඩංගුව වැරදි යැයි සිතුවත් ශාරීරිකව විරෝධය නොපාවන්න","මාව අත්අඩංගුවට ගන්නේ ඇයිදැයි පැහැදිලිව අසන්න — හේතුව කීමට ඔවුන් බැඳී සිටී","නම සහ මූලික තොරතුරු දී, නීතිඥවරයෙකු හමුවන තුරු නිශ්ශබ්දව සිටින්න","පවුලේ අය සහ නීතිඥවරයෙකු වහාම අමතන ලෙස ඉල්ලන්න","නිලධාරීන්ගේ නම්, අංක, වේලාව සහ ස්ථානය මතක තබාගන්න","තුවාල ඇත්නම් වෛද්‍යවරයෙකු හමුවීමට ඉල්ලන්න"],
+  say:["කරුණාකර මාව අත්අඩංගුවට ගන්නා හේතුව කියන්න.","මට නීතිඥවරයෙකු හමුවීමට අවශ්‍යයි, එතෙක් මම නිශ්ශබ්දව සිටින්නෙමි.","මම කොහේද යන්න මගේ පවුලට දැනුම් දෙන්න."],
+  note:"පැය 24ක් ඇතුළත ළඟම මහේස්ත්‍රාත්වරයා හමුවට පැමිණවිය යුතුය. ඉන්පසු රඳවා තැබීමට මහේස්ත්‍රාත්වරයාගේ නියෝගයක් අවශ්‍යය." },
+{ id:"search", icon:"🔍", title:"පොලිසිය ඔබව, වාහනය හෝ නිවස පරීක්ෂා කරයි", tag:"පරීක්ෂා කිරීම්",
+  can:["නීත්‍යානුකූල අත්අඩංගුවකින් පසු ඔබව පරීක්ෂා කළ හැක","නීතියෙන් විශේෂයෙන් ඉඩ දී ඇති අවස්ථාවල ඔබේ වාහනය පරීක්ෂා කළ හැක"],
+  cant:["බොහෝ අවස්ථාවල මහේස්ත්‍රාත්වරයෙකුගේ සෝදිසි වරෙන්තුවක් නැතිව ඔබේ නිවස පරීක්ෂා කළ නොහැක","පිරිමි නිලධාරියෙකුට කාන්තාවකගේ ශරීරය පරීක්ෂා කළ නොහැක — කාන්තාවක් පරීක්ෂා කළ යුත්තේ තවත් කාන්තාවකි","වාර්තාවක් නැතිව ඔබේ දේපළ භාරගත නොහැක"],
+  do:["වරෙන්තුවක් තිබේදැයි විනීතව අසා, පෙන්විය හැකිදැයි අසන්න — වරෙන්තු අංකය සහ නිකුත් කළ උසාවිය සටහන් කරගන්න","වාචිකව විරෝධය පෑවත්, නිලධාරීන්ට ශාරීරිකව බාධා නොකරන්න","නම්, අංක, වේලාව සහ භාරගත් දේවල් නිවැරදිව සටහන් කරගන්න","භාරගන්නා සෑම දෙයකම ලිඛිත ලැයිස්තුවක් / රිසිට්පතක් ඉල්ලන්න"],
+  say:["වරෙන්තුවක් තිබේද? කරුණාකර මට පෙන්වන්න.","මම බාධා කරන්නේ නැහැ, නමුත් මෙම පරීක්ෂාවට මම එකඟ නැහැ.","ඔබ භාරගන්නා සියල්ලේ ලිඛිත ලැයිස්තුවක් දෙන්න."],
+  note:"මම එකඟ නැහැ යැයි කීමෙන් පරීක්ෂාව භෞතිකව නැවැත්විය නොහැක, නමුත් පසුව ඔබේ ස්ථාවරය ආරක්ෂා වේ." },
+{ id:"phone", icon:"📱", title:"දුරකථනයේ අගුළු ඇරීමට කියයි", tag:"ඩිජිටල් අයිතිවාසිකම්",
+  can:["දුරකථනය භාරදෙන ලෙස හෝ අගුළු ඇරීමට ඉල්ලිය හැක"],
+  cant:["ස්ථානයේදීම මුරපදය හෙළි කිරීමට බල කරන පැහැදිලි නීතියක් ශ්‍රී ලංකාවේ නැත — මෙම ක්ෂේත්‍රය නීත්‍යානුකූලව අපැහැදිලිය"],
+  do:["උසාවි නියෝගයක් නැතිව මුරපදය ස්වේච්ඡාවෙන් දීමට ඔබට බැඳීමක් නැත — විනීතව ප්‍රතික්ෂේප කරන්න","මේ සඳහා උසාවි නියෝගයක් තිබේදැයි අසන්න","කිසිවක් මකන්න එපා — සාක්ෂි විනාශ කිරීමද වරදකි","ඕනෑම ඉල්ලීමක් ලිඛිතව ඉල්ලන්න"],
+  say:["මගේ දුරකථනය පරීක්ෂා කිරීමට මම එකඟ නැහැ. උසාවි නියෝගයක් තිබේද?","මේකට පිළිතුරු දීමට පෙර නීතිඥවරයෙකු හමුවීමට කැමතියි."],
+  note:"මෙය සැබවින්ම අපැහැදිලි නීති ක්ෂේත්‍රයකි. නීතිය පැහැදිලි වන තුරු, විනීතව ප්‍රතික්ෂේප කිරීම සහ නීතිඥවරයෙකු ඉල්ලීම ආරක්ෂිතම මගයි." },
+{ id:"statement", icon:"🏢", title:"ප්‍රකාශයක් සඳහා පොලිස් ස්ථානයට කැඳවයි", tag:"ප්‍රශ්න කිරීම",
+  can:["සාක්ෂිකරුවෙකු හෝ සැකකරුවෙකු ලෙස ප්‍රකාශයක් දීමට ඔබට ආරාධනා කළ හැක","ඔබ කියන දේ සටහන් කරගත හැක"],
+  cant:["ඔබ අත්අඩංගුවේ නැත්නම් එන්නට බල කළ නොහැක — ඔබට යා හැකිදැයි අසන්න","පොලිස් නිලධාරියෙකුට ඔබ දුන් පාපොච්චාරණයක් උසාවියේ ඔබට විරුද්ධව භාවිතා කළ නොහැක (සාක්ෂි ආඥා පනත, 25 වගන්තිය)","කියවා තේරුම් නොගත් කිසිවකට අත්සන් කිරීමට බල කළ නොහැක"],
+  do:["මුලින්ම අසන්න: මම සැකකරුවෙක්ද, සාක්ෂිකරුවෙක්ද? මට යා හැකිද?","සැකකරුවෙකු විය හැකි නම් නීතිඥවරයෙකු රැගෙන යන්න — කතා කිරීමට පෙර උපදෙස් ගන්න","පොලිස් භාරයේ සිටියදී දුන් පාපොච්චාරණයක් වලංගු වන්නේ මහේස්ත්‍රාත්වරයෙකු ඉදිරියේදී දුන්නොත් පමණි (26 වගන්තිය) — නීතිඥවරයා එනතුරු සිටීමට තවත් හේතුවක්","අත්සන් කිරීමට පෙර සියල්ල කියවන්න; අත්සන් කරන දේ ඡායාරූප ගන්න","නිලධාරියාගේ නම සහ ඔබ පැමිණි / පිටත් වූ වේලාවන් සටහන් කරගන්න"],
+  say:["මම මෙහි සැකකරුවෙක්ද, සාක්ෂිකරුවෙක්ද?","මට යා හැකිද?","ප්‍රකාශයක් දීමට පෙර මගේ නීතිඥවරයා සිටිය යුතුයි."],
+  note:"පොඩි කතාවකට එන්න යැයි කීමත් සාක්ෂියක් විය හැක. නීතිඥවරයෙකු සිටීම තත්ත්වය සම්පූර්ණයෙන්ම වෙනස් කරයි." },
+{ id:"protest", icon:"✊", title:"විරෝධතාවයක / පොදු රැස්වීමක", tag:"රැස්වීම",
+  can:["රැස්වීමට පැමිණ නිරීක්ෂණය කළ හැක","විශේෂිත නීති යටතේ කොන්දේසි පැනවීමට හෝ විසුරුවා හැරීමට නියෝග කළ හැක"],
+  cant:["සාමකාමී රැස්වීම සම්පූර්ණයෙන්ම තහනම් කළ නොහැක — ඔබට සාමකාමීව රැස්වීමේ ආණ්ඩුක්‍රම ව්‍යවස්ථාමය අයිතියක් ඇත (14(1)(b) ව්‍යවස්ථාව)","සාමකාමී සහභාගිවන්නන්ට අධික බලය භාවිතා කළ නොහැක","සාමාන්‍ය අත්අඩංගුවේ ක්‍රියාපටිපාටියෙන් තොරව අත්අඩංගුවට ගත නොහැක — අත්අඩංගුවේ අයිතිවාසිකම් සියල්ල අදාළ වේ"],
+  do:["හැඳුනුම්පත ළඟ තබාගන්න","සාමකාමීව සිටින්න — අයිතිය ආරක්ෂා කරන්නේ සාමකාමී රැස්වීමයි","යමක් සිදුවුවහොත් නිලධාරීන්ගේ අංක සටහන් කරගන්න","හැකි නම් ආරක්ෂිත දුරකින් වීඩියෝ කරන්න","ඔබ කොහේද යන්න දන්නා හදිසි සම්බන්ධතාවක් තබාගන්න"],
+  say:["මම සාමකාමීව රැස්වී සිටින්නෙමි.","කරුණාකර ඔබේ අනන්‍යතාව කියන්න, නිලධාරීතුමනි."],
+  note:"විරෝධතාවයකදී අත්අඩංගුවට පත්වුණොත්, පොලිසිය අත්අඩංගුවට ගනී කාඩ්පත බලන්න — එහි අයිතිවාසිකම් සියල්ල අදාළ වේ." },
+{ id:"complaint", icon:"📝", title:"පොලිසියට විරුද්ධව පැමිණිල්ලක්", tag:"වගවීම",
+  can:["ශ්‍රී ලංකා මානව හිමිකම් කොමිසමට (HRCSL) පැමිණිලි කළ හැක — පැය 24 පුරා ක්‍රියාත්මක 1996 හදිසි අංකය","නිලධාරීන්ගේ වැරදි හැසිරීම් ගැන ජාතික පොලිස් කොමිසමට පැමිණිලි කළ හැක","නීති ආධාර කොමිසමෙන් නොමිලේ නීති උපකාර ලබාගත හැක (011-2433618)"],
+  cant:["පැමිණිලි කිරීම නීත්‍යානුකූලව කිසිවෙකුට නැවැත්විය නොහැක"],
+  do:["හැකි ඉක්මනින් සියල්ල ලියාගන්න: නම්, අංක, වේලාව, ස්ථානය, සාක්ෂිකරුවන්","තුවාල ඇත්නම් වහාම වෛද්‍ය වාර්තාවක් ගන්න — එය ප්‍රධාන සාක්ෂියකි","ඉදිරිපත් කරන සියල්ලේ පිටපත් තබාගන්න","පැමිණිලි සිංහල, දෙමළ හෝ ඉංග්‍රීසි යන ඕනෑම බසකින් කළ හැක"],
+  say:["[ස්ථානය] දී [දිනය] දින නිලධාරීන්ගේ හැසිරීම ගැන විධිමත් පැමිණිල්ලක් කිරීමට කැමතියි."],
+  note:"අයිතිවාසිකම් උල්ලංඝනයන් සඳහා වේගවත්ම මග HRCSL 1996 හදිසි අංකයයි. වියදම් දැරිය නොහැකි නම් නීතිඥවරයෙකු සඳහා නීති ආධාර කොමිසම අමතන්න." },
+{ id:"bail", icon:"⚖️", title:"ඇප පිළිබඳ මූලික කරුණු", tag:"අත්අඩංගුවෙන් පසු",
+  can:["බොහෝ වැරදි සඳහා මහේස්ත්‍රාත්වරයාට ඇප දිය හැක","බරපතල වැරදි සඳහා මහාධිකරණය ඇප සලකා බලයි"],
+  cant:["උසාවිය ඔබේ ඇප ඉල්ලීම සලකා බැලීමෙන් තොරව දීර්ඝ කාලයක් රඳවා තබාගත නොහැක"],
+  do:["පළමු මහේස්ත්‍රාත් හමුවේදීම (අත්අඩංගුවෙන් පැය 24ක් ඇතුළත) ඇප ඉල්ලීමට නීතිඥවරයා ලවා ඉල්ලන්න","ඇපකරුවෙකු සූදානම් කරගන්න — උසාවි බොහෝ විට ඉල්ලයි","ඇප කොන්දේසි සියල්ල තදින්ම පිළිපදින්න — කඩකිරීමෙන් ඇප අහෝසි විය හැක"],
+  say:["මගේ නීතිඥවරයා හරහා ඇප ඉල්ලීමට කැමතියි."],
+  note:"ඇප නීති වැරදි මත බෙහෙවින් රඳා පවතී. මෙය දළ සටහනක් පමණි — ඔබේ නීතිඥවරයාගේ උපදෙස් අනුගමනය කරන්න." }
+],
+contacts: [
+ {icon:"🚔", bg:"#e9f7ef", name:"පොලිස් හදිසි අංකය", num:"119", desc:"ජාතික පොලිස් හදිසි ඇමතුම. ඔබට හෝ අසල කෙනෙකුට වහාම අනතුරක් නම් අමතන්න.", tel:"119"},
+ {icon:"🛡️", bg:"#fdf3e2", name:"මානව හිමිකම් කොමිසම (පැය 24)", num:"1996", desc:"අත්අඩංගුව, වධහිංසා, හිරිහැර හෝ නිලධාරීන්ගේ අයිතිවාසිකම් උල්ලංඝනයන් සඳහා.", tel:"1996"},
+ {icon:"⚖️", bg:"#e8effd", name:"නීති ආධාර කොමිසම", num:"011-2433618", desc:"දැරිය නොහැකි අයට නොමිලේ නීති උපදෙස් සහ නීතිඥවරුන්. ප්‍රධාන කාර්යාලය, කොළඹ.", tel:"+94112433618"},
+ {icon:"👩", bg:"#fdeef4", name:"කාන්තා හා ළමා කාර්යාංශය", num:"011-3071121", desc:"කාන්තාවන් හා ළමුන් අපයෝජනය පිළිබඳ පොලිස් කාර්යාංශය.", tel:"+94113071121"}
+] },
+
+/* ================= TAMIL ================= */
+ta: { ui: {
+  subtitle: "உங்கள் உரிமைகளை எளிய மொழியில் அறிந்துகொள்ளுங்கள்",
+  disc: "ℹ️ இது பொதுவான தகவல் மட்டுமே — சட்ட ஆலோசனை அல்ல. சட்டங்கள் மாறக்கூடும்; உங்கள் பிரச்சினைக்கு வழக்கறிஞரை அணுகுங்கள். இலவச உதவி: சட்ட உதவி ஆணையம் 011-2433618.",
+  searchPh: "சூழ்நிலைகளைத் தேடுங்கள்… எ.கா: கைது, தொலைபேசி, பிணை",
+  secSit: "பொதுவான சூழ்நிலைகள்", secEm: "அவசர அழைப்புகள்",
+  tabSit: "சூழ்நிலைகள்", tabEm: "அவசரம்", nores: "உங்கள் தேடலுக்கு ஏற்ற சூழ்நிலை இல்லை.",
+  theyCan: "✅ அவர்கள் செய்யக்கூடியவை", limits: "⛔ அவர்களின் அதிகார வரம்புகள்", youDo: "🧭 நீங்கள் செய்ய வேண்டியவை", sayThis: "🗣️ இப்படிச் சொல்லுங்கள்",
+  callNow: "📞 இப்போது அழைக்கவும்",
+  about: "<b>இந்த செயலி பற்றி:</b> RightsLK அரசியலமைப்பு (உறுப்புகள் 11 & 13), குற்றவியல் நடைமுறைச் சட்டம், மோட்டார் போக்குவரத்துச் சட்டம், சாட்சியக் கட்டளைச் சட்டம் மற்றும் அதிகாரப்பூர்வ அவசர எண்களின் அடிப்படையில் இலங்கையின் அன்றாட சட்ட உரிமைகளை எளிய மொழியில் சுருக்குகிறது. சிங்களம் மற்றும் தமிழ் எளிய மொழிபெயர்ப்புகள் — ஆங்கில உரையே மூலமாகும். இது வழக்கறிஞருக்கு மாற்று அல்ல. இப்போது சிக்கலில் இருந்தால், அவசர தாவலைப் பயன்படுத்துங்கள்.",
+  emFoot: "எண்கள் அதிகாரப்பூர்வ மூலங்களிலிருந்து (காவல்துறை, HRCSL, சட்ட உதவி ஆணையம்). ஒரு எண் வேலை செய்யாவிட்டால் மற்றவற்றை முயலுங்கள் — அருகிலுள்ளவரிடம் என்ன நடக்கிறது என்று சொல்லுங்கள்.",
+  sheetFoot: "பொதுவான தகவல், சட்ட ஆலோசனை அல்ல. இது இப்போது உங்களுக்கு நடந்தால், அவசர தாவலுக்கு மாறுங்கள்."
+},
+situations: [
+{ id:"traffic", icon:"🚦", title:"போக்குவரத்து போலீசார் நிறுத்தினால்", tag:"சாலை / வாகனம் ஓட்டுதல்",
+  can:["உங்கள் ஓட்டுநர் உரிமத்தைக் கேட்கலாம் — சட்டப்படி அதை எப்போதும் உடன் வைத்திருந்து காவலர் கேட்கும்போது காட்ட வேண்டும் (மோட்டார் போக்குவரத்துச் சட்டம்)","வருவாய் உரிமம், காப்பீடு மற்றும் வாகன ஆவணங்களைச் சரிபார்க்கலாம்","விசாரணையின்போது உங்கள் உரிமத்தைத் தற்காலிகமாக வைத்துக்கொள்ளலாம் — ஆனால் எழுத்துப்பூர்வ தற்காலிக அனுமதி வழங்க வேண்டும்","சிறு குற்றங்களுக்கு இடத்திலேயே அபராதம் விதிக்கலாம் — 14 நாட்களுக்குள் எந்த தபால் நிலையத்திலும் செலுத்தலாம்"],
+  cant:["சாலையிலேயே பணம் கேட்டு சமரசம் செய்ய முடியாது — அபராதம் அதிகாரப்பூர்வ ரசீது மூலம் அல்லது நீதிமன்றத்தில் செலுத்தப்பட வேண்டும்","தற்காலிக அனுமதி வழங்காமல் உங்கள் உரிமத்தை வைத்துக்கொள்ள முடியாது","ஆபத்தான வாகனம் ஓட்டுதலுக்கு இடத்திலேயே அபராதம் விதிக்க முடியாது — 2026 காவல்துறை உத்தரவுப்படி இவை நேரடியாக நீதிமன்றத்திற்குச் செல்லும்"],
+  do:["அமைதியாக இருங்கள்; இறங்கச் சொல்லும் வரை வாகனத்திலேயே இருங்கள்","அதிகாரியின் பெயர் மற்றும் பணி எண்ணைப் பணிவாகக் கேளுங்கள்","ஒருபோதும் லஞ்சம் கொடுக்க முயலாதீர்கள் — அதுவே குற்றம்","இடத்திலேயே அபராதத்தை மறுத்து, வழக்கை நீதிமன்றத்தில் விசாரிக்கக் கோரலாம்","செலுத்தும் தொகைக்கு அதிகாரப்பூர்வ ரசீதை வைத்துக்கொள்ளுங்கள்; ரசீது மற்றும் தற்காலிக அனுமதியைக் காட்டி உரிமத்தைத் திரும்பப் பெறுங்கள்"],
+  say:["அதிகாரியே, உங்கள் அடையாள அட்டையைக் காட்ட முடியுமா?","இதை நீதிமன்றத்தில் விசாரிக்க விரும்புகிறேன்."],
+  note:"இடத்திலேயே அபராத விதிகள் அடிக்கடி மாறும். சந்தேகம் இருந்தால், சாலையில் செலுத்துவதை விட நீதிமன்ற வழியைத் தேர்ந்தெடுங்கள்." },
+{ id:"arrest", icon:"🚨", title:"போலீசார் கைது செய்தால்", tag:"மிக முக்கியம்",
+  can:["கடுமையான குற்றங்களுக்கு பிடிவாரண்ட் இல்லாமல் கைது செய்யலாம்","நீங்கள் எதிர்த்தால் நியாயமான பலத்தைப் பயன்படுத்தலாம்"],
+  cant:["சட்டப்படியான நடைமுறை இல்லாமல் தன்னிச்சையாகக் கைது செய்ய முடியாது (அரசியலமைப்பு, உறுப்பு 13(1))","நீதவான் முன் நிறுத்தாமல் 24 மணி நேரத்திற்கு மேல் தடுத்து வைக்க முடியாது (குற்றவியல் நடைமுறைச் சட்டம், பிரிவு 37)","சித்திரவதை செய்ய முடியாது — முற்றிலும் தடை (அரசியலமைப்பு, உறுப்பு 11)","மிரட்டி ஒப்புதல் வாக்குமூலம் பெற முடியாது — மிரட்டலில் பெற்ற வாக்குமூலம் நீதிமன்றத்தில் செல்லாது"],
+  do:["கைது தவறு என்று நினைத்தாலும் உடல்ரீதியாக எதிர்க்க வேண்டாம்","என்னை ஏன் கைது செய்கிறீர்கள் என்று தெளிவாகக் கேளுங்கள் — காரணம் சொல்ல வேண்டும்","பெயர், அடிப்படை விவரங்களைக் கொடுத்துவிட்டு, வழக்கறிஞர் வரும் வரை மௌனமாக இருங்கள்","குடும்பத்தினருக்கும் வழக்கறிஞருக்கும் உடனே தகவல் சொல்லக் கோருங்கள்","அதிகாரிகளின் பெயர், எண், நேரம், இடத்தை நினைவில் வைத்துக்கொள்ளுங்கள்","காயம் இருந்தால் மருத்துவரைப் பார்க்கக் கோருங்கள்"],
+  say:["என்னைக் கைது செய்யும் காரணத்தைச் சொல்லுங்கள்.","எனக்கு ஒரு வழக்கறிஞரைச் சந்திக்க வேண்டும், அதுவரை மௌனமாக இருப்பேன்.","நான் எங்கே இருக்கிறேன் என்பதை என் குடும்பத்திற்குத் தெரிவியுங்கள்."],
+  note:"24 மணி நேரத்திற்குள் அருகிலுள்ள நீதவான் முன் நிறுத்தப்பட வேண்டும். அதன் பின் தடுப்புக்கு நீதவானின் உத்தரவு தேவை." },
+{ id:"search", icon:"🔍", title:"போலீசார் உங்களையோ வாகனத்தையோ வீட்டையோ சோதனையிட்டால்", tag:"சோதனைகள்",
+  can:["சட்டப்பூர்வ கைதுக்குப் பின் உங்களைச் சோதனையிடலாம்","சட்டம் குறிப்பாக அனுமதிக்கும் சூழலில் உங்கள் வாகனத்தைச் சோதனையிடலாம்"],
+  cant:["பெரும்பாலான சூழலில் நீதவானின் சோதனை பிடிவாரண்ட் இல்லாமல் உங்கள் வீட்டைச் சோதனையிட முடியாது","ஆண் அதிகாரி ஒரு பெண்ணின் உடலைச் சோதனையிட முடியாது — பெண்ணை இன்னொரு பெண்ணே சோதனையிட வேண்டும்","பதிவு இல்லாமல் உங்கள் பொருட்களைக் கைப்பற்ற முடியாது"],
+  do:["பிடிவாரண்ட் உள்ளதா, காட்ட முடியுமா என்று பணிவாகக் கேளுங்கள் — வாரண்ட் எண், வழங்கிய நீதிமன்றத்தைக் குறித்துக்கொள்ளுங்கள்","வாய்மொழியாக எதிர்த்தாலும், அதிகாரிகளை உடல்ரீதியாகத் தடுக்க வேண்டாம்","பெயர்கள், எண்கள், நேரம், எடுக்கப்பட்ட பொருட்களைத் துல்லியமாகக் குறித்துக்கொள்ளுங்கள்","எடுக்கப்படும் ஒவ்வொன்றுக்கும் எழுத்துப்பூர்வ பட்டியல் / ரசீது கேளுங்கள்"],
+  say:["பிடிவாரண்ட் உள்ளதா? தயவுசெய்து காட்டுங்கள்.","நான் தடுக்கவில்லை, ஆனால் இந்தச் சோதனைக்கு நான் சம்மதிக்கவில்லை.","நீங்கள் எடுக்கும் அனைத்திற்கும் எழுத்துப்பூர்வ பட்டியல் தாருங்கள்."],
+  note:"நான் சம்மதிக்கவில்லை என்பது சோதனையை உடல்ரீதியாக நிறுத்தாது, ஆனால் பின்னர் உங்கள் நிலையைப் பாதுகாக்கும்." },
+{ id:"phone", icon:"📱", title:"தொலைபேசியைத் திறக்கச் சொன்னால்", tag:"டிஜிட்டல் உரிமைகள்",
+  can:["தொலைபேசியை ஒப்படைக்க அல்லது திறக்கக் கோரலாம்"],
+  cant:["இடத்திலேயே கடவுச்சொல்லை வெளியிடுமாறு கட்டாயப்படுத்தும் தெளிவான சட்டம் இலங்கையில் இல்லை — இது சட்டரீதியாகத் தெளிவற்ற பகுதி"],
+  do:["நீதிமன்ற உத்தரவு இல்லாமல் கடவுச்சொல்லைத் தானாகத் தர வேண்டிய கட்டாயம் இல்லை — பணிவாக மறுக்கவும்","இதற்கு நீதிமன்ற உத்தரவு உள்ளதா என்று கேளுங்கள்","எதையும் அழிக்க வேண்டாம் — சாட்சியை அழிப்பதும் குற்றம்","எந்தக் கோரிக்கையையும் எழுத்துப்பூர்வமாகக் கேளுங்கள்"],
+  say:["என் தொலைபேசியைச் சோதனையிட நான் சம்மதிக்கவில்லை. நீதிமன்ற உத்தரவு உள்ளதா?","பதில் சொல்வதற்கு முன் வழக்கறிஞரைச் சந்திக்க விரும்புகிறேன்."],
+  note:"இது உண்மையிலேயே தெளிவற்ற சட்டப் பகுதி. சட்டம் தெளிவாகும் வரை, பணிவாக மறுப்பதும் வழக்கறிஞரைக் கேட்பதும் பாதுகாப்பான வழி." },
+{ id:"statement", icon:"🏢", title:"வாக்குமூலத்திற்காக காவல் நிலையத்திற்கு அழைத்தால்", tag:"விசாரணை",
+  can:["சாட்சியாகவோ சந்தேகநபராகவோ வாக்குமூலம் தர அழைக்கலாம்","நீங்கள் சொல்வதைப் பதிவு செய்யலாம்"],
+  cant:["நீங்கள் கைதில் இல்லையென்றால் வருமாறு கட்டாயப்படுத்த முடியாது — நான் செல்லலாமா என்று கேளுங்கள்","காவல் அதிகாரியிடம் நீங்கள் அளித்த ஒப்புதல் வாக்குமூலத்தை நீதிமன்றத்தில் உங்களுக்கு எதிராகப் பயன்படுத்த முடியாது (சாட்சியக் கட்டளைச் சட்டம், பிரிவு 25)","படித்துப் புரிந்துகொள்ளாத எதிலும் கையெழுத்திடக் கட்டாயப்படுத்த முடியாது"],
+  do:["முதலில் கேளுங்கள்: நான் சந்தேகநபரா, சாட்சியா? நான் செல்லலாமா?","சந்தேகநபராக இருக்கலாம் என்றால் வழக்கறிஞரை அழைத்துச் செல்லுங்கள் — பேசும் முன் ஆலோசனை பெறுங்கள்","காவலில் இருக்கும்போது அளித்த ஒப்புதல் வாக்குமூலம் நீதவான் முன்னிலையில் அளித்தால் மட்டுமே செல்லும் (பிரிவு 26) — வழக்கறிஞர் வரும் வரை காத்திருக்க இன்னொரு காரணம்","கையெழுத்திடும் முன் அனைத்தையும் படியுங்கள்; கையெழுத்திடுவதைப் புகைப்படம் எடுங்கள்","அதிகாரியின் பெயர், நீங்கள் வந்த / சென்ற நேரங்களைக் குறித்துக்கொள்ளுங்கள்"],
+  say:["நான் இங்கு சந்தேகநபரா, சாட்சியா?","நான் செல்லலாமா?","வாக்குமூலம் தரும் முன் என் வழக்கறிஞர் உடன் இருக்க வேண்டும்."],
+  note:"சிறு பேச்சுக்கு வாருங்கள் என்பதும் சாட்சியாகலாம். வழக்கறிஞர் உடன் இருப்பது நிலைமையை முற்றிலும் மாற்றும்." },
+{ id:"protest", icon:"✊", title:"போராட்டத்தில் / பொதுக்கூட்டத்தில்", tag:"ஒன்றுகூடல்",
+  can:["கூட்டத்திற்கு வந்து கண்காணிக்கலாம்","குறிப்பிட்ட சட்டங்களின் கீழ் நிபந்தனைகள் விதிக்கலாம் அல்லது கலைந்து செல்ல உத்தரவிடலாம்"],
+  cant:["அமைதியான ஒன்றுகூடலை முற்றிலும் தடை செய்ய முடியாது — அமைதியாக ஒன்றுகூட உங்களுக்கு அரசியலமைப்பு உரிமை உண்டு (உறுப்பு 14(1)(b))","அமைதியான பங்கேற்பாளர்கள் மீது அதிக பலம் பயன்படுத்த முடியாது","வழக்கமான கைது நடைமுறை இல்லாமல் கைது செய்ய முடியாது — கைதின் அனைத்து உரிமைகளும் பொருந்தும்"],
+  do:["அடையாள அட்டையை உடன் வைத்திருங்கள்","அமைதியாக இருங்கள் — உரிமை பாதுகாப்பது அமைதியான ஒன்றுகூடலையே","ஏதாவது நடந்தால் அதிகாரிகளின் எண்களைக் குறித்துக்கொள்ளுங்கள்","முடிந்தால் பாதுகாப்பான தூரத்திலிருந்து படம் எடுங்கள்","நீங்கள் எங்கே இருக்கிறீர்கள் என்று தெரிந்த அவசர தொடர்பை வைத்திருங்கள்"],
+  say:["நான் அமைதியாக ஒன்றுகூடியுள்ளேன்.","தயவுசெய்து உங்களை அடையாளம் காட்டுங்கள், அதிகாரியே."],
+  note:"போராட்டத்தில் கைது செய்யப்பட்டால், போலீசார் கைது செய்தால் அட்டையைப் பாருங்கள் — அதன் அனைத்து உரிமைகளும் பொருந்தும்." },
+{ id:"complaint", icon:"📝", title:"போலீசாருக்கு எதிராகப் புகார்", tag:"பொறுப்புக்கூறல்",
+  can:["இலங்கை மனித உரிமைகள் ஆணையத்திடம் (HRCSL) புகார் அளிக்கலாம் — 24 மணி நேர 1996 அவசர எண்","அதிகாரிகளின் தவறான நடத்தை குறித்து தேசிய காவல் ஆணையத்திடம் புகார் அளிக்கலாம்","சட்ட உதவி ஆணையத்திடம் இலவச சட்ட உதவி பெறலாம் (011-2433618)"],
+  cant:["புகார் அளிப்பதைச் சட்டப்படி யாரும் தடுக்க முடியாது"],
+  do:["கூடிய விரைவில் அனைத்தையும் எழுதுங்கள்: பெயர்கள், எண்கள், நேரம், இடம், சாட்சிகள்","காயம் இருந்தால் உடனே மருத்துவ அறிக்கை பெறுங்கள் — அது முக்கிய சாட்சியம்","சமர்ப்பிக்கும் அனைத்தின் நகல்களையும் வைத்திருங்கள்","புகார்களைச் சிங்களம், தமிழ் அல்லது ஆங்கிலத்தில் அளிக்கலாம்"],
+  say:["[இடம்] இல் [தேதி] அன்று அதிகாரிகளின் நடத்தை குறித்து முறையான புகார் அளிக்க விரும்புகிறேன்."],
+  note:"உரிமை மீறல்களுக்கு விரைவான வழி HRCSL 1996 அவசர எண். வழக்கறிஞருக்குச் செலவிட முடியாவிட்டால் சட்ட உதவி ஆணையத்தை அழையுங்கள்." },
+{ id:"bail", icon:"⚖️", title:"பிணை அடிப்படைகள்", tag:"கைதுக்குப் பின்",
+  can:["பல குற்றங்களுக்கு நீதவான் பிணை வழங்கலாம்","கடுமையான குற்றங்களுக்கு உயர் நீதிமன்றம் பிணையைப் பரிசீலிக்கும்"],
+  cant:["நீதிமன்றம் உங்கள் பிணை மனுவைப் பரிசீலிக்காமல் நீண்ட காலம் தடுத்து வைக்க முடியாது"],
+  do:["முதல் நீதவான் விசாரணையிலேயே (கைதுக்கு 24 மணி நேரத்திற்குள்) பிணை கோர வழக்கறிஞர் மூலம் மனு செய்யுங்கள்","பிணையாளரைத் தயாராக வைத்திருங்கள் — நீதிமன்றங்கள் பெரும்பாலும் கேட்கும்","பிணை நிபந்தனைகளைக் கண்டிப்பாகப் பின்பற்றுங்கள் — மீறினால் பிணை ரத்தாகலாம்"],
+  say:["என் வழக்கறிஞர் மூலம் பிணை கோர விரும்புகிறேன்."],
+  note:"பிணை விதிகள் குற்றத்தைப் பொறுத்து மாறும். இது ஒரு சுருக்கம் மட்டுமே — உங்கள் வழக்கறிஞரின் ஆலோசனையைப் பின்பற்றுங்கள்." }
+],
+contacts: [
+ {icon:"🚔", bg:"#e9f7ef", name:"காவல் அவசர எண்", num:"119", desc:"தேசிய காவல் அவசர அழைப்பு. உங்களுக்கோ அருகிலுள்ளவருக்கோ உடனடி ஆபத்து என்றால் அழையுங்கள்.", tel:"119"},
+ {icon:"🛡️", bg:"#fdf3e2", name:"மனித உரிமைகள் ஆணையம் (24 மணி)", num:"1996", desc:"கைது, சித்திரவதை, துன்புறுத்தல் அல்லது அதிகாரிகளின் உரிமை மீறல்களுக்கு.", tel:"1996"},
+ {icon:"⚖️", bg:"#e8effd", name:"சட்ட உதவி ஆணையம்", num:"011-2433618", desc:"செலவிட முடியாதவர்களுக்கு இலவச சட்ட ஆலோசனை மற்றும் வழக்கறிஞர்கள். தலைமை அலுவலகம், கொழும்பு.", tel:"+94112433618"},
+ {icon:"👩", bg:"#fdeef4", name:"பெண்கள் மற்றும் சிறுவர் பிரிவு", num:"011-3071121", desc:"பெண்கள், சிறுவர் துஷ்பிரயோகம் குறித்த காவல் பிரிவு.", tel:"+94113071121"}
+] }
+};
+
+let lang = localStorage.getItem("rightslk_lang") || "en";
+if(!LANGS[lang]) lang = "en";
+function L(){ return LANGS[lang]; }
+function esc(s){ return String(s).replace(/</g,"&lt;"); }
+function li(arr){ return "<ul>"+arr.map(function(x){ return "<li>"+esc(x)+"</li>"; }).join("")+"</ul>"; }
+
+function renderChrome(){
+  var u = L().ui;
+  document.getElementById("subtitle").textContent = u.subtitle;
+  document.getElementById("discChip").innerHTML = u.disc;
+  document.getElementById("q").placeholder = u.searchPh;
+  document.getElementById("secSit").textContent = u.secSit;
+  document.getElementById("secEm").textContent = u.secEm;
+  document.getElementById("tabSit").textContent = u.tabSit;
+  document.getElementById("tabEm").textContent = u.tabEm;
+  document.getElementById("nores").textContent = u.nores;
+  document.getElementById("aboutText").innerHTML = u.about;
+  document.getElementById("emFoot").textContent = u.emFoot;
+  ["en","si","ta"].forEach(function(k){
+    document.getElementById("lang-"+k).classList.toggle("on", k===lang);
+  });
+  document.documentElement.lang = lang;
+}
+function renderGrid(){
+  var u = L().ui, q = document.getElementById("q").value.trim().toLowerCase();
+  var grid = document.getElementById("grid"); grid.innerHTML = "";
+  var n = 0;
+  L().situations.forEach(function(s){
+    var hay = (s.title+" "+s.tag+" "+s.can.join(" ")+" "+s.do.join(" ")).toLowerCase();
+    if(q && hay.indexOf(q)<0) return;
+    n++;
+    var d = document.createElement("div");
+    d.className = "scard";
+    d.onclick = (function(id){ return function(){ openSheet(id); }; })(s.id);
+    d.innerHTML = '<div class="ic">'+s.icon+'</div><h3>'+esc(s.title)+'</h3><div class="tag">'+esc(s.tag)+"</div>";
+    grid.appendChild(d);
+  });
+  document.getElementById("nores").classList.toggle("hidden", n>0);
+}
+function openSheet(id){
+  var u = L().ui;
+  var s = null;
+  L().situations.forEach(function(x){ if(x.id===id) s=x; });
+  if(!s) return;
+  document.getElementById("sheetBody").innerHTML =
+    "<h2>"+s.icon+" "+esc(s.title)+'</h2><div class="psub">'+esc(s.tag)+"</div>"+
+    '<div class="block b-can"><h4>'+esc(u.theyCan)+"</h4>"+li(s.can)+"</div>"+
+    '<div class="block b-cant"><h4>'+esc(u.limits)+"</h4>"+li(s.cant)+"</div>"+
+    '<div class="block b-do"><h4>'+esc(u.youDo)+"</h4>"+li(s.do)+"</div>"+
+    '<div class="say"><h4>'+esc(u.sayThis)+"</h4>"+s.say.map(function(x){ return "<p>"+esc(x)+"</p>"; }).join("")+"</div>"+
+    '<div class="note">'+esc(s.note)+"</div>"+
+    '<div class="foot-disc">'+esc(u.sheetFoot)+"</div>";
+  document.getElementById("sheet").classList.add("open");
+  document.querySelector(".sheet .panel").scrollTop = 0;
+  document.body.style.overflow = "hidden";
+}
+function closeSheet(){
+  document.getElementById("sheet").classList.remove("open");
+  document.body.style.overflow = "";
+}
+function showTab(t){
+  var s = (t==="situations");
+  document.getElementById("view-situations").classList.toggle("hidden", !s);
+  document.getElementById("view-emergency").classList.toggle("hidden", s);
+  document.getElementById("tabS").classList.toggle("on", s);
+  document.getElementById("tabE").classList.toggle("on", !s);
+  window.scrollTo(0,0);
+}
+function renderEmergency(){
+  var u = L().ui, el = document.getElementById("elist");
+  el.innerHTML = "";
+  L().contacts.forEach(function(c){
+    var d = document.createElement("div");
+    d.className = "ecard";
+    d.innerHTML = '<div class="eic" style="background:'+c.bg+'">'+c.icon+"</div>"+
+      '<div class="einf"><b>'+esc(c.name)+" — "+esc(c.num)+"</b><p>"+esc(c.desc)+"</p>"+
+      '<a class="callbtn" href="tel:'+c.tel+'">'+esc(u.callNow)+"</a></div>";
+    el.appendChild(d);
+  });
+}
+function setLang(l){
+  if(!LANGS[l]) return;
+  lang = l;
+  try{ localStorage.setItem("rightslk_lang", l); }catch(e){}
+  closeSheet();
+  renderChrome(); renderGrid(); renderEmergency();
+}
+document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeSheet(); });
+renderChrome(); renderGrid(); renderEmergency();
+</script>
+</body>
+</html>
